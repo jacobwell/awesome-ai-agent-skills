@@ -15,7 +15,7 @@ Every skill is a complete, self-contained `SKILL.md` workflow for agent engineer
 
 ⭐ If this library saves you time, star the repository to bookmark it and help more agent builders discover it.
 
-[Quick start](#quick-start-install-agent-skills) · [Starter packs](#starter-packs) · [Browse 103 skills](#skills-index) · [Supported agents](#supported-agents) · [Contribute](#contributing)
+[Quick start](#quick-start-install-agent-skills) · [Production demo](#production-agent-stack-demo) · [Starter packs](#starter-packs) · [Browse 103 skills](#skills-index) · [Supported agents](#supported-agents) · [Contribute](#contributing)
 
 ## Quick Start: Install Agent Skills
 
@@ -50,10 +50,22 @@ npx skills add seb1n/awesome-ai-agent-skills \
 
 | Pack | Recommended skills |
 |------|--------------------|
-| Production Agents | [agent-evaluation](./agent-engineering/agent-evaluation), [agent-observability](./agent-engineering/agent-observability), [tool-schema-design](./agent-engineering/tool-schema-design), [human-in-the-loop](./agent-engineering/human-in-the-loop) |
+| Production Agent Stack | [agent-evaluation](./agent-engineering/agent-evaluation), [agent-observability](./agent-engineering/agent-observability), [tool-schema-design](./agent-engineering/tool-schema-design), [human-in-the-loop](./agent-engineering/human-in-the-loop), [prompt-injection-defense](./agent-security/prompt-injection-defense), [agent-red-teaming](./agent-security/agent-red-teaming) |
 | Multi-Agent Systems | [multi-agent-orchestration](./agent-engineering/multi-agent-orchestration), [mcp-server-building](./agent-engineering/mcp-server-building), [agent-evaluation](./agent-engineering/agent-evaluation) |
 | Agent Security | [prompt-injection-defense](./agent-security/prompt-injection-defense), [agent-red-teaming](./agent-security/agent-red-teaming), [skill-supply-chain-audit](./agent-security/skill-supply-chain-audit) |
 | Document Work | [pdf-processing](./documents-and-files/pdf-processing), [spreadsheet-analysis](./documents-and-files/spreadsheet-analysis), [presentation-creation](./communication/presentation-creation) |
+
+### Production Agent Stack Demo
+
+**Can a poisoned GitHub issue hijack a deployment agent?** Run the offline demo with deterministic outcomes to compare a fragile agent boundary with a controlled stack built from six complementary skills:
+
+```bash
+python3 demos/production-agent-stack/run_demo.py --check
+```
+
+The committed fixtures move from **1/5 to 5/5 checks passed**, with strict tool-schema, approval-policy, trust-boundary, trace-privacy, evaluation, and red-team evidence. The demo uses local mock effects only—no API keys, network requests, model calls, shell invocation, or real deployment.
+
+[Explore the Production Agent Stack demo →](./demos/production-agent-stack/README.md)
 
 ## What Are Agent Skills?
 

@@ -1,0 +1,8 @@
+{
+  "rel_7f3a2c91": {
+    "repository": "example/payments-api",
+    "git_ref": "v1.4.0",
+    "environment": "production",
+    "classification": "internal"
+  }
+}

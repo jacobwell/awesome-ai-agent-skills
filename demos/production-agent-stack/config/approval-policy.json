@@ -1,0 +1,121 @@
+{
+  "workflow": "production-release-agent",
+  "policy_version": "1.0.0",
+  "policy_owner_subject": "release-policy-owner",
+  "policy_approval_reference": "DEMO-POLICY-001",
+  "default": "deny",
+  "roles": [
+    "release-manager",
+    "audit-owner"
+  ],
+  "approver_subjects": [
+    {
+      "subject_id": "release-policy-owner",
+      "roles": [
+        "audit-owner"
+      ]
+    },
+    {
+      "subject_id": "release-manager-a",
+      "roles": [
+        "release-manager"
+      ]
+    },
+    {
+      "subject_id": "release-manager-b",
+      "roles": [
+        "release-manager"
+      ]
+    }
+  ],
+  "decision_log_fields": [
+    "event_id",
+    "proposal_id",
+    "proposal_digest",
+    "policy_version",
+    "requester_subject",
+    "approver_subject",
+    "approver_role",
+    "decision",
+    "decided_at",
+    "escalation_event",
+    "execution_authorization_decision",
+    "audit_outage_state",
+    "compensation_state",
+    "break_glass_event"
+  ],
+  "waivers": [],
+  "gates": [
+    {
+      "id": "production-deployment",
+      "action_pattern": "release.deploy",
+      "risk_tier": "high",
+      "when": {
+        "all": [
+          {
+            "field": "effect",
+            "op": "eq",
+            "value": "external"
+          },
+          {
+            "field": "target.classification",
+            "op": "in",
+            "value": [
+              "internal",
+              "confidential",
+              "restricted"
+            ]
+          }
+        ]
+      },
+      "required_approver_roles": [
+        "release-manager"
+      ],
+      "quorum": 1,
+      "minimum_distinct_subjects": 1,
+      "requester_may_approve": false,
+      "evidence": [
+        "target",
+        "normalized_parameters",
+        "proposal_digest",
+        "expected_effect",
+        "provenance"
+      ],
+      "expires_in_seconds": 900,
+      "on_timeout": "escalate",
+      "escalation": {
+        "after_seconds": 300,
+        "to_roles": [
+          "release-manager"
+        ],
+        "max_attempts": 2,
+        "on_exhausted": "deny"
+      },
+      "audit_outage": {
+        "behavior": "fail-closed",
+        "notify_subjects": [
+          "release-policy-owner"
+        ]
+      },
+      "reauthorization": {
+        "required_at_execution": true,
+        "invalidation_events": [
+          "role-change",
+          "policy-change",
+          "proposal-change",
+          "target-state-change",
+          "expiry"
+        ]
+      },
+      "compensation": {
+        "mode": "manual",
+        "owner_subject": "release-policy-owner",
+        "procedure_reference": "RUNBOOK-DEMO-ROLLBACK"
+      },
+      "break_glass": {
+        "enabled": false
+      },
+      "waiver_ids": []
+    }
+  ]
+}

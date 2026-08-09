@@ -1,0 +1,222 @@
+{
+  "system": "production-release-agent",
+  "protected_assets": [
+    {
+      "id": "deployment-credentials",
+      "classification": "credentials",
+      "owner": "release-platform"
+    },
+    {
+      "id": "release-registry",
+      "classification": "internal",
+      "owner": "release-platform"
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "github-issue",
+      "trust": "untrusted",
+      "modalities": [
+        "text",
+        "markdown"
+      ],
+      "control_ids": [
+        "source-isolation"
+      ]
+    },
+    {
+      "id": "trusted-release-queue",
+      "trust": "trusted",
+      "modalities": [
+        "structured-data"
+      ],
+      "control_ids": [
+        "trusted-release-resolution"
+      ]
+    }
+  ],
+  "sinks": [
+    {
+      "id": "proposal-record",
+      "type": "database",
+      "trust": "trusted",
+      "owner": "release-platform",
+      "control_ids": [
+        "output-validation",
+        "trace-redaction"
+      ]
+    },
+    {
+      "id": "deployment-ledger",
+      "type": "database",
+      "trust": "trusted",
+      "owner": "release-platform",
+      "control_ids": [
+        "exact-proposal-approval",
+        "output-validation"
+      ]
+    }
+  ],
+  "memory_stores": [],
+  "agent_hops": [],
+  "destinations": [
+    {
+      "id": "mock-production-deployer",
+      "kind": "local-mock-adapter",
+      "owner": "release-platform",
+      "control_ids": [
+        "destination-allowlist"
+      ]
+    }
+  ],
+  "credential_boundaries": [
+    {
+      "id": "deployment-token",
+      "credential_class": "short-lived-service-token",
+      "holder": "tool-gateway",
+      "audience": "mock-production-deployer",
+      "storage": "managed-secret-store",
+      "downstream_passthrough": false,
+      "control_ids": [
+        "destination-allowlist"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "id": "prepare-release",
+      "effects": [
+        "read"
+      ],
+      "risk": "low",
+      "destination_ids": [],
+      "sink_ids": [
+        "proposal-record"
+      ],
+      "control_ids": [
+        "source-isolation",
+        "trusted-release-resolution",
+        "output-validation"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "enforcement_point": "tool-gateway",
+        "owner": "release-platform"
+      }
+    },
+    {
+      "id": "release-commit",
+      "effects": [
+        "write",
+        "external"
+      ],
+      "risk": "high",
+      "destination_ids": [
+        "mock-production-deployer"
+      ],
+      "sink_ids": [
+        "deployment-ledger"
+      ],
+      "control_ids": [
+        "exact-proposal-approval",
+        "destination-allowlist",
+        "output-validation"
+      ],
+      "confirmation": {
+        "mode": "always",
+        "enforcement_point": "tool-gateway",
+        "owner": "release-platform"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "id": "source-isolation",
+      "kind": "instruction-data-separation",
+      "status": "verified",
+      "enforcement_point": "ingestion-adapter",
+      "owner": "release-platform",
+      "evidence_ids": [
+        "code:untrusted-source-envelope"
+      ],
+      "test_ids": [
+        "test:issue-cannot-select-release"
+      ],
+      "time_limited": false,
+      "expires_at": null
+    },
+    {
+      "id": "trusted-release-resolution",
+      "kind": "server-side-identifier-resolution",
+      "status": "verified",
+      "enforcement_point": "release-registry-adapter",
+      "owner": "release-platform",
+      "evidence_ids": [
+        "code:release-registry-lookup"
+      ],
+      "test_ids": [
+        "test:unknown-release-denied"
+      ],
+      "time_limited": false,
+      "expires_at": null
+    },
+    {
+      "id": "exact-proposal-approval",
+      "kind": "digest-bound-human-approval",
+      "status": "verified",
+      "enforcement_point": "policy-gateway",
+      "owner": "release-policy-owner",
+      "evidence_ids": [
+        "policy:production-deployment"
+      ],
+      "test_ids": [
+        "test:tampered-proposal-denied"
+      ],
+      "time_limited": false,
+      "expires_at": null
+    },
+    {
+      "id": "destination-allowlist",
+      "kind": "destination-policy",
+      "status": "verified",
+      "enforcement_point": "tool-gateway",
+      "owner": "release-platform",
+      "evidence_ids": [
+        "config:mock-deployer-only"
+      ],
+      "test_ids": [
+        "test:unapproved-destination-denied"
+      ],
+      "time_limited": false,
+      "expires_at": null
+    },
+    {
+      "id": "output-validation",
+      "kind": "typed-output-validation",
+      "status": "implemented",
+      "enforcement_point": "deployment-adapter",
+      "owner": "release-platform",
+      "evidence_ids": [
+        "schema:mock-deployment-record-v1"
+      ],
+      "test_ids": [],
+      "time_limited": false,
+      "expires_at": null
+    },
+    {
+      "id": "trace-redaction",
+      "kind": "content-free-telemetry",
+      "status": "verified",
+      "enforcement_point": "trace-exporter",
+      "owner": "observability-platform",
+      "evidence_ids": [
+        "config:trace-field-allowlist"
+      ],
+      "test_ids": [
+        "test:synthetic-canary-not-exported"
+      ],
+      "time_limited": false,
+      "expires_at": null
+    }
+  ]
+}

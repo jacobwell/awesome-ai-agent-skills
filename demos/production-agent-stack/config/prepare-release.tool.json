@@ -1,0 +1,18 @@
+{
+  "name": "prepare_release",
+  "description": "Prepare a reviewable deployment proposal from one opaque release identifier; this tool never deploys or changes external state.",
+  "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string",
+        "description": "Opaque release identifier issued by the trusted release queue.",
+        "pattern": "^rel_[a-f0-9]{8}$"
+      }
+    },
+    "required": [
+      "release_id"
+    ]
+  }
+}

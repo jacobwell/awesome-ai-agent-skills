@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+    tags: ["v*"]
 
 permissions:
   contents: read
@@ -22,3 +23,6 @@ jobs:
 
       - name: Validate catalog
         run: python scripts/validate_skills.py
+
+      - name: Run Production Agent Stack demo
+        run: python demos/production-agent-stack/run_demo.py --check --no-color
