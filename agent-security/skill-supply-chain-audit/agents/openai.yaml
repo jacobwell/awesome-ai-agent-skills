@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Supply Chain Audit"
+  short_description: "Audit agent skills for supply-chain risk"
+  default_prompt: "Use $skill-supply-chain-audit to audit this agent skill package before installation."

@@ -1,12 +1,15 @@
 # Awesome AI Agent Skills
 
+<!-- skill-count: 103 -->
+
 **The Open-Source Library of AI Agent Skills.**
 
-**Not a directory of links — a ready-to-use collection of 90+ complete, universal skills for any agent.**
+**Not a directory of links — a ready-to-use collection of 103 complete, universal skills for any agent.**
 
-[![Skills Count](https://img.shields.io/badge/Skills-90+-blue?style=flat-square)](https://github.com/seb1n/awesome-ai-agent-skills)
+[![Skills Count](https://img.shields.io/badge/Skills-103-blue?style=flat-square)](https://github.com/seb1n/awesome-ai-agent-skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
+[![Validate Skills](https://github.com/seb1n/awesome-ai-agent-skills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/seb1n/awesome-ai-agent-skills/actions/workflows/validate-skills.yml)
 
 ---
 
@@ -20,13 +23,48 @@ Each skill follows the open [SKILL.md standard](https://agentskills.io/specifica
 
 ## Why a Library, Not a Directory?
 
--   **Ready to Use:** No need to hunt down external repos. Just clone and use.
--   **Standardized Quality:** Every skill follows the same high-quality, community-vetted format.
--   **Community Owned:** This is a library built *by* the community, *for* the community. All content is here, open to improvement by everyone.
+- **Ready to Use:** Install individual skills directly or clone the complete library.
+- **Validated Structure:** CI checks names, activation descriptions, links, duplicates, catalog synchronization, skill count, and bundled Python syntax.
+- **Progressive Disclosure:** Deeper skills bundle focused scripts, references, and assets without loading everything into context.
+- **Community Owned:** The library is built by the community and open to review and improvement.
 
 ## How to Use
 
-Each skill is a self-contained directory with a `SKILL.md` file. To use a skill, copy its directory into the appropriate skills path for your AI agent platform:
+### Install with the Skills CLI
+
+List every available skill:
+
+```bash
+npx skills add https://github.com/seb1n/awesome-ai-agent-skills --list
+```
+
+Install one skill and let the CLI detect your supported agents:
+
+```bash
+npx skills add https://github.com/seb1n/awesome-ai-agent-skills --skill agent-evaluation
+```
+
+Install several complementary skills by repeating `--skill`:
+
+```bash
+npx skills add https://github.com/seb1n/awesome-ai-agent-skills \
+  --skill agent-evaluation \
+  --skill agent-observability \
+  --skill human-in-the-loop
+```
+
+### Starter Packs
+
+| Pack | Recommended skills |
+|------|--------------------|
+| Production Agents | `agent-evaluation`, `agent-observability`, `tool-schema-design`, `human-in-the-loop` |
+| Multi-Agent Systems | `multi-agent-orchestration`, `mcp-server-building`, `agent-evaluation` |
+| Agent Security | `prompt-injection-defense`, `agent-red-teaming`, `skill-supply-chain-audit` |
+| Document Work | `pdf-processing`, `spreadsheet-analysis`, `presentation-creation` |
+
+### Manual Installation
+
+Each skill is a self-contained directory with a `SKILL.md` file. Copy the selected directory into the appropriate skills path for your agent platform:
 
 | Platform | Project Path | Global Path |
 |----------|-------------|-------------|
@@ -48,6 +86,25 @@ Each skill is a self-contained directory with a `SKILL.md` file. To use a skill,
 | [ml-pipeline-creation](./ai-ml-operations/ml-pipeline-creation) | Build end-to-end machine learning pipelines |
 | [model-deployment](./ai-ml-operations/model-deployment) | Deploy trained models to production environments |
 | [model-training](./ai-ml-operations/model-training) | Train machine learning models on given datasets |
+
+### Agent Engineering
+
+| Skill | Description |
+|-------|-------------|
+| [agent-evaluation](./agent-engineering/agent-evaluation) | Design reproducible evaluations, graders, baselines, and release gates for AI agents |
+| [agent-observability](./agent-engineering/agent-observability) | Instrument agent traces, metrics, cost attribution, dashboards, and investigations |
+| [human-in-the-loop](./agent-engineering/human-in-the-loop) | Design auditable approval gates, escalation paths, and safe state transitions |
+| [mcp-server-building](./agent-engineering/mcp-server-building) | Build and verify secure, interoperable Model Context Protocol servers |
+| [multi-agent-orchestration](./agent-engineering/multi-agent-orchestration) | Coordinate bounded multi-agent workflows, handoffs, shared state, and recovery |
+| [tool-schema-design](./agent-engineering/tool-schema-design) | Design precise model-facing tool schemas with explicit side effects and safe defaults |
+
+### Agent Security
+
+| Skill | Description |
+|-------|-------------|
+| [agent-red-teaming](./agent-security/agent-red-teaming) | Plan authorized adversarial tests for agent behavior, tools, memory, and controls |
+| [prompt-injection-defense](./agent-security/prompt-injection-defense) | Defend agent workflows against direct and indirect prompt injection |
+| [skill-supply-chain-audit](./agent-security/skill-supply-chain-audit) | Audit skill bundles for malicious instructions, unsafe scripts, provenance, and excessive permissions |
 
 ### API & Integration
 
@@ -130,6 +187,13 @@ Each skill is a self-contained directory with a `SKILL.md` file. To use a skill,
 | [user-flow-mapping](./design-and-ui-ux/user-flow-mapping) | Map user journeys and interaction flows |
 | [wireframing](./design-and-ui-ux/wireframing) | Create wireframes and low-fidelity mockups |
 
+### Documents & Files
+
+| Skill | Description |
+|-------|-------------|
+| [pdf-processing](./documents-and-files/pdf-processing) | Extract, transform, create, and visually verify PDF documents safely |
+| [spreadsheet-analysis](./documents-and-files/spreadsheet-analysis) | Analyze and modify spreadsheets while preserving formulas, structure, and auditability |
+
 ### Finance & Accounting
 
 | Skill | Description |
@@ -156,8 +220,9 @@ Each skill is a self-contained directory with a `SKILL.md` file. To use a skill,
 |-------|-------------|
 | [compliance-checklist-generation](./legal-and-compliance/compliance-checklist-generation) | Create compliance checklists for SOC2, HIPAA, PCI-DSS, and GDPR |
 | [contract-review](./legal-and-compliance/contract-review) | Analyze contracts for risks, obligations, and key clauses |
+| [eu-ai-act-readiness](./legal-and-compliance/eu-ai-act-readiness) | Assess EU AI Act readiness with dated evidence, gaps, owners, and counsel review |
 | [license-analysis](./legal-and-compliance/license-analysis) | Analyze open-source license compatibility and obligations |
-| [privacy-policy-drafting](./legal-and-compliance/privacy-policy-drafting) | Generate GDPR/CCPA-compliant privacy policies |
+| [privacy-policy-drafting](./legal-and-compliance/privacy-policy-drafting) | Draft privacy-policy language and a jurisdiction-aware review checklist |
 | [terms-of-service-generation](./legal-and-compliance/terms-of-service-generation) | Draft Terms of Service documents for web apps and SaaS |
 
 ### Marketing & SEO
@@ -227,6 +292,7 @@ Each skill follows the [Agent Skills open standard](https://agentskills.io/speci
 ```
 skill-name/
 ├── SKILL.md          # Required: Instructions and metadata
+├── agents/           # Optional: Product-specific UI metadata
 ├── scripts/          # Optional: Executable scripts
 ├── references/       # Optional: Reference documentation
 └── assets/           # Optional: Templates and resources
@@ -237,14 +303,23 @@ The `SKILL.md` file structure:
 ```yaml
 ---
 name: skill-name
-description: What the skill does and when to use it.
-license: MIT
+description: What the skill does. Use when the user provides these inputs or requests this workflow.
 ---
 
 # Skill Name
 
 Instructions, workflows, and examples for the agent.
 ```
+
+## Quality and Validation
+
+Run the zero-dependency catalog validator locally:
+
+```bash
+python3 scripts/validate_skills.py
+```
+
+The same validation runs in CI. New and materially revised skills must also test one normal prompt, one edge or failure prompt, and every executable script. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the complete quality and safety checklist.
 
 ## Contributing
 

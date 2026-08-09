@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF Processing"
+  short_description: "Safely inspect, transform, and verify PDFs"
+  default_prompt: "Use $pdf-processing to process this PDF while preserving and verifying the original."

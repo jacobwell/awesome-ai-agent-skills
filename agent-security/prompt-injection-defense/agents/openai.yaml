@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prompt Injection Defense"
+  short_description: "Defend agents from prompt injection attacks"
+  default_prompt: "Use $prompt-injection-defense to threat-model and harden this AI workflow against direct and indirect prompt injection."

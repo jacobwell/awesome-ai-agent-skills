@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Observability"
+  short_description: "Instrument and analyze agent execution traces"
+  default_prompt: "Use $agent-observability to define traces and diagnose this agent workflow."

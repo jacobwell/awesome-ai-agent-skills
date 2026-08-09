@@ -1,0 +1,122 @@
+{
+  "workflow": "replace-with-workflow-name",
+  "policy_version": "1.0.0",
+  "policy_owner_subject": "policy-owner",
+  "policy_approval_reference": "CHANGE-REPLACE-ME",
+  "default": "deny",
+  "roles": [
+    "operator",
+    "manager",
+    "audit-owner"
+  ],
+  "approver_subjects": [
+    {
+      "subject_id": "policy-owner",
+      "roles": [
+        "audit-owner"
+      ]
+    },
+    {
+      "subject_id": "manager-a",
+      "roles": [
+        "manager"
+      ]
+    },
+    {
+      "subject_id": "manager-b",
+      "roles": [
+        "manager"
+      ]
+    }
+  ],
+  "decision_log_fields": [
+    "event_id",
+    "proposal_id",
+    "proposal_digest",
+    "policy_version",
+    "requester_subject",
+    "approver_subject",
+    "approver_role",
+    "decision",
+    "decided_at",
+    "escalation_event",
+    "execution_authorization_decision",
+    "audit_outage_state",
+    "compensation_state",
+    "break_glass_event"
+  ],
+  "waivers": [],
+  "gates": [
+    {
+      "id": "material-action",
+      "action_pattern": "resource.commit",
+      "risk_tier": "high",
+      "when": {
+        "all": [
+          {
+            "field": "effect",
+            "op": "eq",
+            "value": "external"
+          },
+          {
+            "field": "target.classification",
+            "op": "in",
+            "value": [
+              "internal",
+              "confidential",
+              "restricted"
+            ]
+          }
+        ]
+      },
+      "required_approver_roles": [
+        "manager"
+      ],
+      "quorum": 1,
+      "minimum_distinct_subjects": 1,
+      "requester_may_approve": false,
+      "evidence": [
+        "target",
+        "normalized_parameters",
+        "proposal_digest",
+        "expected_effect",
+        "provenance"
+      ],
+      "expires_in_seconds": 1800,
+      "on_timeout": "escalate",
+      "escalation": {
+        "after_seconds": 900,
+        "to_roles": [
+          "manager"
+        ],
+        "max_attempts": 2,
+        "on_exhausted": "deny"
+      },
+      "audit_outage": {
+        "behavior": "fail-closed",
+        "notify_subjects": [
+          "policy-owner"
+        ]
+      },
+      "reauthorization": {
+        "required_at_execution": true,
+        "invalidation_events": [
+          "role-change",
+          "policy-change",
+          "proposal-change",
+          "target-state-change",
+          "expiry"
+        ]
+      },
+      "compensation": {
+        "mode": "manual",
+        "owner_subject": "policy-owner",
+        "procedure_reference": "RUNBOOK-REPLACE-ME"
+      },
+      "break_glass": {
+        "enabled": false
+      },
+      "waiver_ids": []
+    }
+  ]
+}

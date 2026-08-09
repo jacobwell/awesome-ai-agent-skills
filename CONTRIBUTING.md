@@ -1,42 +1,62 @@
 # Contributing to Awesome AI Agent Skills
 
-Thank you for your interest in contributing to this collection. We welcome new skills, improvements to existing ones, and bug fixes from the community.
+Thank you for improving the library. Contributions should add reusable procedural value, not merely increase the catalog count.
 
-## How to Add a New Skill
+## Before You Start
 
-1. **Fork the repository** and clone it to your local machine.
+1. Search the existing catalog for the same trigger and outcome.
+2. Open or comment on an issue before adding a new category or a skill that substantially overlaps an existing one.
+3. Keep the universal core platform-agnostic. Put vendor-specific commands behind clearly labeled variants or propose them separately.
+4. Use lowercase kebab-case for the directory and frontmatter `name`; they must match exactly.
 
-2. **Choose the right category.** Browse the existing categories in the repository and select the one that best fits your skill. If no existing category fits, you may propose a new one.
+## Create or Update a Skill
 
-3. **Create the skill directory.** Inside the appropriate category folder, create a new directory for your skill. The directory name must use `kebab-case` (lowercase letters, numbers, and hyphens only).
+1. Choose the closest category and copy [`SKILL_TEMPLATE.md`](./SKILL_TEMPLATE.md) into `<category>/<skill-name>/SKILL.md`.
+2. Write a description that says what the skill does and explicitly says **Use when** with concrete user wording, inputs, or artifacts. Add an overlap boundary when a neighboring skill could trigger.
+3. Define required inputs, output contract, workflow, permission boundaries, failure behavior, and verification evidence.
+4. Add only reusable resources that improve execution:
+   - `scripts/` for deterministic or repeated operations
+   - `references/` for selectively loaded standards, schemas, and detailed variants
+   - `assets/` for templates and files copied into outputs
+5. Test every executable script and example. Do not include credentials, private data, copied proprietary material, or claims that were not checked.
+6. Add the skill to the README index and update the `<!-- skill-count: N -->` marker.
 
-4. **Create the `SKILL.md` file.** Every skill must include a `SKILL.md` file with the following structure:
+## Safety Requirements
 
-```yaml
----
-name: your-skill-name
-description: A clear description of what the skill does and when to use it.
-license: MIT
----
+- Require explicit authorization before active security testing, destructive operations, deployments, database writes, external messages, purchases, filings, or changes to third-party systems.
+- Start with read-only inspection and dry runs where available.
+- Preserve originals and document rollback for material changes.
+- For legal, medical, financial, compliance, and other high-impact domains, cite dated authoritative sources, state uncertainty, and require qualified human review.
+- Never claim a task succeeded without verifying the resulting artifact or external state.
 
-# Your Skill Name
+## Validate Locally
 
-Detailed instructions, workflows, and examples for the agent.
+Run the repository validator before submitting:
+
+```bash
+python3 scripts/validate_skills.py
 ```
 
-5. **Add optional resources.** If your skill requires scripts, reference documentation, or templates, add them in the appropriate subdirectories (`scripts/`, `references/`, `assets/`).
+The validator checks naming, activation descriptions, structure, local links, duplicate files, README synchronization, skill count, Python script syntax, and Codex UI metadata when present. CI runs the same command on every pull request.
 
-6. **Submit a pull request.** Push your changes to your fork and open a pull request against the `main` branch.
+For a new or materially revised skill, also test at least two realistic prompts:
 
-## Skill Quality Guidelines
+- one normal task that should activate the skill and complete successfully;
+- one edge or failure case that exercises its permission, recovery, or uncertainty handling.
 
-We prioritize quality over quantity. Please ensure your skill meets the following criteria:
+Include the prompts, observed behavior, and any script commands in the pull request description.
 
-- **Clear and actionable instructions.** The agent should be able to follow the instructions without ambiguity.
-- **Practical examples.** Include at least one example of how the skill is used.
-- **Proper YAML frontmatter.** The `name` and `description` fields are required.
-- **Tested and validated.** If possible, test your skill with an AI agent before submitting.
+## Pull Request Checklist
+
+- [ ] The contribution is original, licensed for inclusion, and does not duplicate an existing skill.
+- [ ] The directory and frontmatter names match and use lowercase kebab-case.
+- [ ] The description contains explicit **Use when** activation guidance.
+- [ ] Inputs, outputs, safety boundaries, failure handling, and verification are concrete.
+- [ ] Scripts and executable examples were actually run.
+- [ ] Changing facts cite authoritative sources with a verification date.
+- [ ] README links and the exact skill count are updated.
+- [ ] `python3 scripts/validate_skills.py` passes.
 
 ## Code of Conduct
 
-Be respectful and constructive in all interactions. We are building this together.
+Be respectful, specific, and constructive. Review the work, not the person.

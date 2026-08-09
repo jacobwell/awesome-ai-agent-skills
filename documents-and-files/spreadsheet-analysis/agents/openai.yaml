@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spreadsheet Analysis"
+  short_description: "Analyze spreadsheets with evidence checks"
+  default_prompt: "Use $spreadsheet-analysis to inspect this workbook and produce a verified analysis."

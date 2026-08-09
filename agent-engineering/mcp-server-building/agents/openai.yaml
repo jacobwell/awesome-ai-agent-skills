@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP Server Building"
+  short_description: "Build secure, testable MCP servers"
+  default_prompt: "Use $mcp-server-building to design and implement a secure, testable MCP server for this integration."
