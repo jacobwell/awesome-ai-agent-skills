@@ -2,52 +2,45 @@
 
 <!-- skill-count: 103 -->
 
-**The Open-Source Library of AI Agent Skills.**
+**103 ready-to-use AI agent skills for Claude Code, OpenAI Codex, Gemini CLI, Cursor, GitHub Copilot, Windsurf, and other tools that support the open Agent Skills standard.**
 
-**Not a directory of links — a ready-to-use collection of 103 complete, universal skills for any agent.**
+Every skill is a complete, self-contained `SKILL.md` workflow for agent engineering, MCP, multi-agent systems, security, coding, research, data, DevOps, documents, marketing, sales, and more—not a link to another repository.
 
 [![Skills Count](https://img.shields.io/badge/Skills-103-blue?style=flat-square)](https://github.com/seb1n/awesome-ai-agent-skills)
+[![GitHub stars](https://img.shields.io/github/stars/seb1n/awesome-ai-agent-skills?style=flat-square&logo=github)](https://github.com/seb1n/awesome-ai-agent-skills/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
 [![Validate Skills](https://github.com/seb1n/awesome-ai-agent-skills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/seb1n/awesome-ai-agent-skills/actions/workflows/validate-skills.yml)
+[![Browse on skills.sh](https://img.shields.io/badge/Browse-skills.sh-black?style=flat-square)](https://skills.sh/seb1n/awesome-ai-agent-skills)
 
----
+⭐ If this library saves you time, star the repository to bookmark it and help more agent builders discover it.
 
-## About This Library
+[Quick start](#quick-start-install-agent-skills) · [Starter packs](#starter-packs) · [Browse 103 skills](#skills-index) · [Supported agents](#supported-agents) · [Contribute](#contributing)
 
-While other collections link to external repositories, **Awesome AI Agent Skills** provides a self-contained, ready-to-use library of complete skills. Every skill in this repository is a full `SKILL.md` file with detailed instructions, workflows, and implementation guidance.
+## Quick Start: Install Agent Skills
 
-Our focus is on **universal, platform-agnostic skills** that make any AI agent better at general, real-world tasks like code review, security auditing, data analysis, technical writing, legal compliance, financial modeling, sales, and customer success. This is not a list of vendor-specific tools, but a foundational library for building capable, autonomous agents.
-
-Each skill follows the open [SKILL.md standard](https://agentskills.io/specification), making them compatible with leading AI coding assistants and agent platforms, including Claude Code, OpenAI Codex, Gemini CLI, Cursor, GitHub Copilot, Windsurf, and more.
-
-## Why a Library, Not a Directory?
-
-- **Ready to Use:** Install individual skills directly or clone the complete library.
-- **Validated Structure:** CI checks names, activation descriptions, links, duplicates, catalog synchronization, skill count, and bundled Python syntax.
-- **Progressive Disclosure:** Deeper skills bundle focused scripts, references, and assets without loading everything into context.
-- **Community Owned:** The library is built by the community and open to review and improvement.
-
-## How to Use
-
-### Install with the Skills CLI
-
-List every available skill:
+Use the open-source [Skills CLI](https://github.com/vercel-labs/skills) to choose skills and install them for your detected agents:
 
 ```bash
-npx skills add https://github.com/seb1n/awesome-ai-agent-skills --list
+npx skills add seb1n/awesome-ai-agent-skills
 ```
 
-Install one skill and let the CLI detect your supported agents:
+List all available skills without installing:
 
 ```bash
-npx skills add https://github.com/seb1n/awesome-ai-agent-skills --skill agent-evaluation
+npx skills add seb1n/awesome-ai-agent-skills --list
+```
+
+Install one skill directly:
+
+```bash
+npx skills add seb1n/awesome-ai-agent-skills --skill agent-evaluation
 ```
 
 Install several complementary skills by repeating `--skill`:
 
 ```bash
-npx skills add https://github.com/seb1n/awesome-ai-agent-skills \
+npx skills add seb1n/awesome-ai-agent-skills \
   --skill agent-evaluation \
   --skill agent-observability \
   --skill human-in-the-loop
@@ -57,25 +50,52 @@ npx skills add https://github.com/seb1n/awesome-ai-agent-skills \
 
 | Pack | Recommended skills |
 |------|--------------------|
-| Production Agents | `agent-evaluation`, `agent-observability`, `tool-schema-design`, `human-in-the-loop` |
-| Multi-Agent Systems | `multi-agent-orchestration`, `mcp-server-building`, `agent-evaluation` |
-| Agent Security | `prompt-injection-defense`, `agent-red-teaming`, `skill-supply-chain-audit` |
-| Document Work | `pdf-processing`, `spreadsheet-analysis`, `presentation-creation` |
+| Production Agents | [agent-evaluation](./agent-engineering/agent-evaluation), [agent-observability](./agent-engineering/agent-observability), [tool-schema-design](./agent-engineering/tool-schema-design), [human-in-the-loop](./agent-engineering/human-in-the-loop) |
+| Multi-Agent Systems | [multi-agent-orchestration](./agent-engineering/multi-agent-orchestration), [mcp-server-building](./agent-engineering/mcp-server-building), [agent-evaluation](./agent-engineering/agent-evaluation) |
+| Agent Security | [prompt-injection-defense](./agent-security/prompt-injection-defense), [agent-red-teaming](./agent-security/agent-red-teaming), [skill-supply-chain-audit](./agent-security/skill-supply-chain-audit) |
+| Document Work | [pdf-processing](./documents-and-files/pdf-processing), [spreadsheet-analysis](./documents-and-files/spreadsheet-analysis), [presentation-creation](./communication/presentation-creation) |
 
-### Manual Installation
+## What Are Agent Skills?
 
-Each skill is a self-contained directory with a `SKILL.md` file. Copy the selected directory into the appropriate skills path for your agent platform:
+Agent Skills are reusable instruction packages that teach an AI agent when and how to complete a task. Each skill follows the open [Agent Skills standard](https://agentskills.io/specification): a `SKILL.md` file with activation metadata and step-by-step guidance, plus optional scripts, references, and assets. Agents load a skill only when it is relevant, keeping context focused.
+
+## Why This Library?
+
+Unlike collections that send you to external repositories, **Awesome AI Agent Skills** keeps every workflow in one inspectable, installable library.
+
+- **Ready to use:** Install a single skill, a starter pack, or choose from the complete catalog.
+- **Cross-agent compatible:** Use the same skills with Claude Code, OpenAI Codex, Gemini CLI, Cursor, GitHub Copilot, Windsurf, and other compatible tools.
+- **Validated structure:** CI checks names, activation descriptions, links, duplicates, catalog synchronization, skill count, and bundled Python syntax.
+- **Progressive disclosure:** Deeper skills bundle focused scripts, references, and assets without loading everything into context.
+- **Broad real-world coverage:** Build agents for engineering, security, data, research, documents, compliance, finance, marketing, sales, and customer success.
+- **Open source:** The library is MIT licensed and open to review, adaptation, and contribution.
+
+## Supported Agents
+
+The Skills CLI detects supported agents automatically. For manual installation, copy a skill directory into the appropriate project or global path:
 
 | Platform | Project Path | Global Path |
 |----------|-------------|-------------|
 | Claude Code | `.claude/skills/` | `~/.claude/skills/` |
-| OpenAI Codex | `.codex/skills/` | `~/.codex/skills/` |
+| OpenAI Codex | `.agents/skills/` | `~/.agents/skills/` |
 | Gemini CLI | `.gemini/skills/` | `~/.gemini/skills/` |
 | Cursor | `.cursor/skills/` | `~/.cursor/skills/` |
 | GitHub Copilot | `.github/skills/` | `~/.copilot/skills/` |
 | Windsurf | `.windsurf/skills/` | `~/.codeium/windsurf/skills/` |
 
 ## Skills Index
+
+Browse all 103 skills by category, or use the full searchable index below.
+
+| Agent Building | Technical | Business & Knowledge |
+|----------------|-----------|----------------------|
+| [Agent Engineering](./agent-engineering/) | [Code & Development](./code-and-development/) | [Communication](./communication/) |
+| [Agent Security](./agent-security/) | [Data & Analytics](./data-and-analytics/) | [Customer Success](./customer-success/) |
+| [Context Engineering](./context-engineering/) | [Database](./database/) | [Finance & Accounting](./finance-and-accounting/) |
+| [AI/ML Operations](./ai-ml-operations/) | [DevOps & Infrastructure](./devops-and-infrastructure/) | [Legal & Compliance](./legal-and-compliance/) |
+| [API & Integration](./api-and-integration/) | [Documents & Files](./documents-and-files/) | [Marketing & SEO](./marketing-and-seo/) |
+| [Security](./security/) | [Design & UI/UX](./design-and-ui-ux/) | [Sales](./sales/) |
+| [Productivity & Workflow](./productivity-and-workflow/) | [Research & Knowledge](./research-and-knowledge/) | [Writing & Content](./writing-and-content/) |
 
 ### AI/ML Operations
 
