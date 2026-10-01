@@ -1,12 +1,14 @@
 # Awesome AI Agent Skills
 
-<!-- skill-count: 103 -->
+[eye-art-polyphemus](./design-and-ui-ux/eye-art-polyphemus)
 
-**103 ready-to-use AI agent skills for Claude Code, OpenAI Codex, Gemini CLI, Cursor, GitHub Copilot, Windsurf, and other tools that support the open Agent Skills standard.**
+<!-- skill-count: 104 -->
+
+**104 ready-to-use AI agent skills for Claude Code, OpenAI Codex, Gemini CLI, Cursor, GitHub Copilot, Windsurf, and other tools that support the open Agent Skills standard.**
 
 Every skill is a complete, self-contained `SKILL.md` workflow for agent engineering, MCP, multi-agent systems, security, coding, research, data, DevOps, documents, marketing, sales, and more—not a link to another repository.
 
-[![Skills Count](https://img.shields.io/badge/Skills-103-blue?style=flat-square)](https://github.com/seb1n/awesome-ai-agent-skills)
+[![Skills Count](https://img.shields.io/badge/Skills-104-blue?style=flat-square)](https://github.com/seb1n/awesome-ai-agent-skills)
 [![GitHub stars](https://img.shields.io/github/stars/seb1n/awesome-ai-agent-skills?style=flat-square&logo=github)](https://github.com/seb1n/awesome-ai-agent-skills/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
