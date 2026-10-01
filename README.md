@@ -17,7 +17,7 @@ Every skill is a complete, self-contained `SKILL.md` workflow for agent engineer
 
 ⭐ If this library saves you time, star the repository to bookmark it and help more agent builders discover it.
 
-[Quick start](#quick-start-install-agent-skills) · [Production demo](#production-agent-stack-demo) · [Starter packs](#starter-packs) · [Browse 103 skills](#skills-index) · [Supported agents](#supported-agents) · [Contribute](#contributing)
+[Quick start](#quick-start-install-agent-skills) · [Production demo](#production-agent-stack-demo) · [Starter packs](#starter-packs) · [Browse 104 skills](#skills-index) · [Supported agents](#supported-agents) · [Contribute](#contributing)
 
 ## Quick Start: Install Agent Skills
 
@@ -99,7 +99,7 @@ The Skills CLI detects supported agents automatically. For manual installation, 
 
 ## Skills Index
 
-Browse all 103 skills by category, or use the full searchable index below.
+Browse all 104 skills by category, or use the full searchable index below.
 
 | Agent Building | Technical | Business & Knowledge |
 |----------------|-----------|----------------------|
